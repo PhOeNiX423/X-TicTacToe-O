@@ -1,20 +1,94 @@
-// TicTacToe.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+using namespace std;
+
+void BoardDraw(char boardArray[]) {
+
+    // Make terminal clear ~
+    system("cls");
+    cout << "               TIC TAC TOE" << endl;
+    cout << "         X-Player   VS   O-Player" << endl;
+    cout << " " << endl;
+    cout << "               |         |            " << endl;
+    cout << "           " << boardArray[0] << "   |    " << boardArray[1] << "    |   " << boardArray[2] << endl;
+    cout << "               |         |            " << endl;
+    cout << "        -------------------------" << endl;
+    cout << "               |         |            " << endl;
+    cout << "           " << boardArray[3] << "   |    " << boardArray[4] << "    |   " << boardArray[5] << endl;
+    cout << "               |         |            " << endl;
+    cout << "        -------------------------" << endl;
+    cout << "               |         |            " << endl;
+    cout << "           " << boardArray[6] << "   |    " << boardArray[7] << "    |   " << boardArray[8] << endl;
+    cout << "               |         |            " << endl;
+    cout << " " << endl;
+}
+
+void XPlayerTurn(char boardArray[]) {
+    int Xturn;
+    cout << "X-Player, enter the number: ";
+    cin >> Xturn;
+    boardArray[Xturn - 1] = 'X';
+}
+
+void OPlayerTurn(char boardArray[]) {
+    int Oturn;
+    cout << "O-Player, enter the number: ";
+    cin >> Oturn;
+    boardArray[Oturn - 1] = 'O';
+}
+
+bool WinChecker(char boardArray[]) {
+
+    if (boardArray[0] == boardArray[1] == boardArray[2]) {
+        return true;
+    }
+
+    if (boardArray[3] == boardArray[4] == boardArray[5]) {
+        return true;
+    }
+
+    if (boardArray[6] == boardArray[7] == boardArray[8]) {
+        return true;
+    }
+
+    if (boardArray[0] == boardArray[3] == boardArray[6]) {
+        return true;
+    }
+
+    if (boardArray[1] == boardArray[4] == boardArray[7]) {
+        return true;
+    }
+
+    if (boardArray[2] == boardArray[5] == boardArray[8]) {
+        return true;
+    }
+
+    if (boardArray[0] == boardArray[4] == boardArray[8]) {
+        return true;
+    }
+
+    if (boardArray[2] == boardArray[4] == boardArray[6]) {
+        return true;
+    }
+  
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    char boardArray[9] = { '1','2','3',
+                           '4','5','6',
+                           '7','8','9' };
+
+    while (true) {
+        BoardDraw(boardArray);
+        XPlayerTurn(boardArray);
+        if (WinChecker(boardArray)) {
+            break;
+        }
+        BoardDraw(boardArray);
+        OPlayerTurn(boardArray);
+        if (WinChecker(boardArray)) {
+            break;
+        }
+    }
+    
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
