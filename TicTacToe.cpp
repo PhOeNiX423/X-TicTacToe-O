@@ -65,39 +65,24 @@ void OPlayerTurn(char boardArray[]) {
 
 }
 
-void WinChecker(char boardArray[]) {
+bool WinChecker(char boardArray[], char whoseTurn) {
     
-    if (boardArray[0] == boardArray[1] == boardArray[2] == 'X') {
+    int winOrTie;
+
+    if (boardArray[0] == whoseTurn && boardArray[1] == whoseTurn && boardArray[2] == whoseTurn) {
         system("cls");
-        cout << "WIN";
+        cout << ' ' << endl;
+        cout << "  *--------------------------------------*" << endl;
+        cout << ' ' << endl;
+        cout << "              CONGRATULATIONS!" << endl;
+        cout << ' ';
+        cout << "            " << "Player " << whoseTurn << " is winner" << endl;
+        cout << ' ' << endl;
+        cout << "  *--------------------------------------*" << endl;
+        return true;
     }
-
-    if (boardArray[3] == boardArray[4] == boardArray[5]) {
-        
-    }
-
-    if (boardArray[6] == boardArray[7] == boardArray[8]) {
-       
-    }
-
-    if (boardArray[0] == boardArray[3] == boardArray[6]) {
-       
-    }
-
-    if (boardArray[1] == boardArray[4] == boardArray[7]) {
-        
-    }
-
-    if (boardArray[2] == boardArray[5] == boardArray[8]) {
-       
-    }
-
-    if (boardArray[0] == boardArray[4] == boardArray[8]) {
-        
-    }
-
-    if (boardArray[2] == boardArray[4] == boardArray[6]) {
-        
+    else {
+        return false;
     }
   
 }
@@ -109,12 +94,18 @@ int main()
                            '7','8','9' };
 
     while (true) {
+
         BoardDraw(boardArray);
         XPlayerTurn(boardArray);
-        
+        if (WinChecker(boardArray, 'X')) {
+            break;
+        }
+
         BoardDraw(boardArray);
         OPlayerTurn(boardArray);
-        
+        if (WinChecker(boardArray, 'O')) {
+            break;
+        }
     }
     
 }
