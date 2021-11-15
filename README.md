@@ -1,2 +1,2 @@
 # X-TicTacToe-O
- TicTacToe console game ^^
+ This is my first game project in C++
